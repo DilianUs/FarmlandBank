@@ -1,0 +1,18 @@
+@startuml prueba
+User ->Server: Authentication request
+
+alt successful case 
+    User ->Server:Authentication Accepted
+else some kind of failure
+    User ->Server: Authentication Failure
+    group my own label 
+    User ->Log:Log attack start
+        loop 1000 times 
+            User ->Server:DNS attack
+        end
+    User ->Log:Log attack end
+    end
+else Another type of failure 
+    Server -> User: Please repeat
+end                
+@enduml
